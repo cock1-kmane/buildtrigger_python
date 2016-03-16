@@ -4,14 +4,11 @@ python:
     - 3.3
 env:
  global:
-    - projectID=56aafbf9d78fc6fc596b8f10
+    - PROJECT_ID="56aafbf9d78fc6fc596b8f10"
     - secure: ZpoyeIuxzuXcW2UT70kAUvy7TVhYdAhx0HO/CHFIwaxLetW7qSdXIlcgKONdcl6m9OeeCDaKY6wC1g3dPDOJ2TOAhOcO1jK/OHv+IsiHtx/vjB75XdG/YRSMdAFSwF8M87PyfZxPdcaQuL4SZhhlWYTaWWZU+wauwXgEiWs5V59E+q3VUESFtQZLJJTk8cQsKAkpsMeOxlnCkqym6fMKLlTQO+4FzCYeJuqgtV6S3boJ89jHuvqpR/nUTE5pobaee+HfmP/3Gj8VjSf8EaoOUQaoFsvLSQF3vfBzZDNUiI/0P4ut9iil4nek2DuNVYHzf67qf4FhCDsbu3oSMIr6OQ==
-    
-#script:
-# - curl -H "Authorization: apiToken $apiToken" https://api.shippable.com
-# - curl -H "Authorization: apiToken $apiToken" \-H "Content-Type: application/json" \-d "{\"projectId\": \"011d01\"}"https://api.shippable.com/workflow/enableRepoBuild
-install: true
-script: true
 
-after_success:
-- 'curl -H "Authorization: apiToken $apiToken" -H "Content-Type: application/json" -d "{\"projectId\": \"$projectID\"}" https://apibeta.shippable.com/projects/564ea61bd78fc6fc59652db9/newBuild'
+build:
+  ci:
+  - echo $PROJECT_ID
+  - JSON='{"projectId":"$PROJECT_ID","branchName":"master","type":"push"}'
+  - 'curl -H "Authorization: apiToken $SHIP_TOKEN" -H "Content-Type: application/json" -d "{\"projectId\": \"$PROJECT_ID\"}" https://apibeta.shippable.com/projects/$PROJECT_ID/newBuild'
