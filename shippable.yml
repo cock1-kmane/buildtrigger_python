@@ -8,7 +8,7 @@ env:
     - secure: KNhtOkMbuhcmrP83qpnIDxAmNq3lewy+OHSDCcAggXv3mLmhU4JbRUw4cR1clnoBNLLmElkk0/6KxflxIsYIheJNmXAKCUi8OjBTW0h/LVUyx71xDxWD4WYEGTMFTwzQFrltrD5IkRQ+vcWCSF4iMLV9tQjbhD+5bnekbGKL3u/4anD1SmKDsWft1ueZbb6kJb6YZPIUEaBamkGr2Yi0Z+r8Yx6AZjomLW4tnqxixxqPHa9nXKqlAk7mVGumfF7J8IkJMJF9uVPZkobtSf2/f4J2OWI5cnggkBFZNax5Uzt22Tm0eUwul+6qd59gNpnT8UFHU4Qo4/+a+Gc8rK8Gtg==
     
 build:
-  ci:
+  ci: 
   - echo $PROJECT_ID
   - JSON='{"projectId":"$PROJECT_ID","branchName":"master","type":"push"}'
   - 'curl -H "Authorization: apiToken $apiToken" -H "Content-Type: application/json" -d "{\"projectId\": \"$PROJECT_ID\"}" https://apibeta.shippable.com/projects/$PROJECT_ID/newbuild?branch=u12pytall'
